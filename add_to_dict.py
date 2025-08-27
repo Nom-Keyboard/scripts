@@ -18,8 +18,7 @@ ap.add_argument('-c', '--code_point', required=True, type=HEX_CODE_POINT, nargs=
 ap.add_argument('-w', '--word', required=True, help='standard representation of the word to be added')
 args = ap.parse_args()
 
-fd = io.TextIOWrapper(getattr(args, 'csv_file'), newline='', encoding='utf-8')
-fd.seek(0)
+(fd := io.TextIOWrapper(getattr(args, 'csv_file'), newline='', encoding='utf-8')).seek(0)
 
 for nom_representation, standard_representation in csv.reader(fd, dialect=csv.excel_tab):
   if nom_representation == args.code_point and standard_representation == args.word:
