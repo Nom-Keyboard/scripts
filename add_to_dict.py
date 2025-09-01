@@ -14,7 +14,7 @@ class StringJoinAction(argparse.Action):
 ap = argparse.ArgumentParser(description='tool for inserting new entries into a dictionary', epilog='example: %(prog)s -f vietnamese.tsv -c 21a38 5583 -w "chữ Nôm"')
 ap.register('type', HEX_CODE_POINT, lambda s: chr(int(s, 16)))
 ap.add_argument('-f', '--csv_file', required=True, type=argparse.FileType('ab+'), help='path to the dictionary file to operate on, an empty one is created automatically if not pre-existing')
-ap.add_argument('-c', '--code_point', required=True, type=HEX_CODE_POINT, nargs='+', action=StringJoinAction, help='raw hexadecimal value expressing the unicode character for the nôm representation')
+ap.add_argument('-c', '--code_point', required=True, type=HEX_CODE_POINT, nargs='*', action=StringJoinAction, help='raw hexadecimal value expressing the unicode character for the nôm representation')
 ap.add_argument('-w', '--word', required=True, help='standard representation of the word to be added')
 args = ap.parse_args()
 
